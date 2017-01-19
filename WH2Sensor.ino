@@ -7,6 +7,7 @@
 //#include "WH2Sensor.h"
 //#include "WH2Storage.h"
 #include <Wire.h>
+#include "WH2Data.h"
 
 
 #define UNDEF             127
@@ -54,15 +55,6 @@
 #define GOT_PULSE 0x01
 #define LOGIC_HI  0x02
 
-
-// 8 bytes length
-struct WH2Data {
-  bool actual;
-  uint8_t humidity;
-  int16_t temperature;
-  uint16_t sensorId;
-  uint32_t gotTime;
-};
 
 void setup() {
   Serial.begin(9600);
@@ -132,8 +124,8 @@ void add(uint16_t sensorId, uint16_t gotTime, int16_t temperature, byte humidity
 
   WH2Data data;
   data.actual = true;
-  data.sensorId = sensorId;
-  data.gotTime = gotTime;
+  data.id = sensorId;
+  data.time = gotTime;
   data.temperature = temperature;
   data.humidity = humidity;
   wh2data[num] = data;
@@ -218,10 +210,10 @@ byte *getNextDataBuffer() {
   WH2Data data = getNextData();
 
   Serial.print("getNextDataBuffer(): sensorId=");
-  Serial.print(data.sensorId);
+  Serial.print(data.id);
 
   Serial.print("; gotTime=");
-  Serial.print(data.gotTime);
+  Serial.print(data.time);
 
   Serial.print("; temperature=");
   Serial.print(data.temperature);
@@ -237,10 +229,10 @@ byte *getNextDataBuffer() {
   buf[2] = data.temperature;
   buf[3] = data.temperature >> 8;
 
-  buf[4] = data.sensorId;
-  buf[5] = data.sensorId >> 8;
+  buf[4] = data.id;
+  buf[5] = data.id >> 8;
 
-  uint16_t timesGone = (millis()/1000) - data.gotTime;
+  uint16_t timesGone = (millis()/1000) - data.time;
 
   buf[6] = timesGone;
   buf[7] = timesGone >> 8;
