@@ -20,6 +20,7 @@
 
     WH2 I2C_WH2::get() {
       WH2Data data = dataDict.removeLast();
+      wh2.id = data.id;
       wh2.temperature = ((float)data.temperature)/10;
       wh2.humidity = data.humidity;
       return wh2;

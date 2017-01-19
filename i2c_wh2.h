@@ -39,6 +39,7 @@
 #define DEFAULT_TIME_FILTER   65000
 
 struct WH2 {
+  uint16_t id;
   float temperature;
   uint8_t humidity;
 };
@@ -48,7 +49,7 @@ class I2C_WH2 {
   private:
     WH2 wh2;
     Dictionary <MAX_WH2_COUNT, uint16_t, WH2Data> dataDict;
-    //uint8_t const dataSize = sizeof(WH2Data) + 1;
+
     uint8_t buffer[WH2DATA_LENGTH];
     uint16_t filter = DEFAULT_TIME_FILTER;
 
