@@ -12,25 +12,17 @@ class Dictionary{
     byte dataCount = 0;
 
     byte getNumByKey(KeyType key);
-
     byte setNumByKey(KeyType key);
-
     DataType removeByNum(byte num);
-
     byte getLastNum();
 
   public:
-    DataType get (KeyType key);
-
     bool push (KeyType key, DataType data);
-
+    DataType get (KeyType key);
     DataType remove(KeyType key);
-
     DataType removeLast() ;
-
     byte getCount();
     KeyType *getKeys();
-
     DataType *getData();
 
 };
