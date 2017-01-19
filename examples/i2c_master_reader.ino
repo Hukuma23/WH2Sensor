@@ -29,7 +29,9 @@ void loop() {
 
 
 void print(WH2 data) {
-    Serial.print("temperature=");
+    Serial.print("id=");
+    Serial.print(data.id);
+    Serial.print(", temperature=");
     Serial.print(data.temperature);
     Serial.print(", humidity=");
     Serial.println(data.humidity);
