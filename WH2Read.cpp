@@ -169,7 +169,7 @@ void wh2_loop() {
         add(wh2_sensor_id(), millis() / 1000, wh2_temperature(), wh2_humidity());
       }
 
-      addRandom();
+      //addRandom();
       
     }
 
