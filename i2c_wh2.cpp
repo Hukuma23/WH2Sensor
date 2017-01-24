@@ -1,3 +1,6 @@
+#ifndef _I2CWH2_cpp
+#define _I2CWH2_cpp
+
 #include "i2c_wh2.h"
 
 
@@ -25,6 +28,14 @@
       wh2.humidity = data.humidity;
       return wh2;
     }
+
+    WH2 I2C_WH2::get(uint16_t id) {
+      WH2Data data = dataDict.remove(id);
+      wh2.id = data.id;
+      wh2.temperature = ((float)data.temperature)/10;
+      wh2.humidity = data.humidity;
+      return wh2;
+    }    
 
     byte I2C_WH2::count() {
       return dataDict.getCount();
@@ -95,3 +106,4 @@
       return data;
     }
 
+#endif //_I2CWH2_cpp

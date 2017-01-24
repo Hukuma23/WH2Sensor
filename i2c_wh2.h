@@ -62,6 +62,7 @@ class I2C_WH2 {
 
     void read();
     WH2 get();
+    WH2 get(uint16_t id);
     byte count();   
     void printWH2Data(WH2Data data);
     void printDict();
